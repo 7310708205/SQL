@@ -1,0 +1,71 @@
+CREATE TABLE Employee(
+    ENO int,
+    ENAME varchar(30),
+    JOB varchar(20),
+    MGR int,
+    HIREDATE varchar(30),
+    SAL int,
+    COMM int, 
+    DEPT int,
+    primary key(ENO)
+);
+
+INSERT INTO Employee VALUES(7369, 'Sunita Sharma', 'CLERK', 7902, '1980-12-17', 2800, null, 20);
+INSERT INTO Employee VALUES(7499, 'Ashok Singhal', 'SALESMAN', 7968, '1981-02-20', 3600, 300,30);
+INSERT INTO Employee VALUES(7521, 'Rohit Rana', 'SALESMAN', 7968, '1981-02-22', 5250, 500,30);
+INSERT INTO Employee VALUES(7566, 'Jyoti Lamba', 'MANAGER', 7839, '1981-04-02', 4975, null,20);
+INSERT INTO Employee VALUES(7654, 'Martin S.', 'SALESMAN', 7698, '1981-09-28', 6250, 1400,30);
+INSERT INTO Employee VALUES(7698, 'Binod Goel', 'MANAGER', 7839, '1981-05-01', 5850, null,30);
+INSERT INTO Employee VALUES(7782, 'Chetan Gupta', 'MANAGER', 7839, '1981-06-09', 2450, null,10);
+INSERT INTO Employee VALUES(7788, 'Sudhir Rawat', 'ANALYST', 7566, '1987-04-19', 5000, null,20);
+INSERT INTO Employee VALUES(7839, 'Kavita Sharma', 'PRESIDENT', null, '1981-11-17', 5000, null,20);
+INSERT INTO Employee VALUES(7844, 'Tushar Tiwari', 'SALESMAN', 7698, '1981-09-08', 4500, 0,30);
+INSERT INTO Employee VALUES(7876, 'Anand Rathi', 'CLERK', 7788, '1987-05-23', 6100, null,20);
+INSERT INTO Employee VALUES(7900, 'Jaydeep Rana', 'CLERK', 7788, '1981-12-03', 4950, null,30);
+INSERT INTO Employee VALUES(7902, 'Sumit Vats', 'ANALYST', 7566, '1981-12-03', 3500, 3600,20);
+INSERT INTO Employee VALUES(7934, 'Manoj Kaushik', 'CLERK', 7782, '1982-01-23', 5300, null,10);
+
+select * from Employee;
+
+select ENAME, ENO from Employee;
+
+select ENAME, HIREDATE, SAL from Employee;
+
+select ENAME, (SAL+300) from Employee;
+
+select ENAME, SAL from Employee where COMM IS NULL;
+
+select distinct DEPT from Employee;
+
+select distinct JOB from Employee;
+
+select SAL from Employee where SAL<COMM;
+
+select SAL from Employee where SAL between 3000 and 4000;
+
+select MGR from Employee WHERE MGR IN (7902, 7566, 7788); 
+
+select ENAME FROM Employee WHERE ENAME LIKE 'S%';
+
+select * from Employee WHERE SAL>4100
+
+select * from Employee ORDER BY HIREDATE ASC;
+
+select * from Employee ORDER BY JOB ASC, SAL DESC ;
+
+select ENAME, JOB from Employee WHERE HIREDATE between '1981-02-20' and '1981-01-05';
+
+select ENAME, DEPT from Employee WHERE DEPT IN (20, 30) ORDER BY ENAME ASC;
+
+select ENAME, SAL from Employee WHERE SAL>1200 and DEPT IN (10 OR 40);
+
+select ENAME, HIREDATE from Employee WHERE YEAR(HIREDATE)  LIKE '1981%';
+
+select * from Employee WHERE MGR IS NULL;
+
+select ENAME FROM Employee WHERE ENAME LIKE '_A%';
+
+select ENAME, SAL from Employee WHERE COMM IS NOT NULL;
+
+select ENAME, JOB from Employee WHERE DEPT IS 20 and MGR IS 7788;
+
