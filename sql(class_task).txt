@@ -1,0 +1,104 @@
+Delimiter $
+create function hello()
+returns varchar(50)
+deterministic
+begin
+Return "Hello!!";
+end$
+Delimiter ;
+select hello();
+
+
+Delimiter $
+create function displayName(fname varchar(20), lname varchar(20))
+returns varchar(50)
+deterministic
+begin
+Return concat(fname, lname);
+end$
+Delimiter ;
+select displayName("Babita", "Negi");
+
+Delimiter $
+create function Addition(num1 int, num2 int)
+returns int
+deterministic
+begin
+Return num1+num2;
+end$
+Delimiter ;
+
+select Addition(5, 6) as 'sum';
+
+Delimiter $
+create function calculateAge(dob date)
+returns int
+deterministic
+begin
+declare today_date date;
+select current_date() into today_date;
+Return year(today_date)-year(dob);
+end$
+Delimiter ;
+
+select calculateAge('2000-08-15') as 'age';
+
+
+
+-- stored procedures
+create table student(
+	id int,
+    name varchar(20),
+    subject varchar(20)
+);
+insert into student values(1, 'Diya', 'Physics');
+insert into student values(2, 'Siya', 'Maths');
+create table course(
+	course_id int,
+    course_name varchar(20)
+);
+insert into course values(101, 'html');
+insert into course values(102, 'sql');
+insert into course values(103, 'css');
+
+Delimiter $
+create procedure getInfo()
+begin
+select * from student;
+select * from course;
+end$
+Delimiter ;
+call getInfo();
+
+Delimiter $
+create procedure getStudentNameById(in id int)
+begin
+select name from student where student.id=1;
+end$
+Delimiter ;
+call getStudentNameById(1);
+
+Delimiter $
+create procedure getStudentRecord(out rec int)
+begin
+select count(*) into rec from student where student.id=2;
+end$
+Delimiter ;
+call getStudentRecord(@rec);
+select @rec as 'records';
+
+Delimiter $
+create procedure getStudSubject(in subject varchar(20), out studcount int)
+begin
+select count(name) into studcount from student where student.subject=subject;
+end$
+Delimiter ;
+
+call getStudSubject('Maths', @studcount);
+select @studcount;
+
+
+-- view
+select * from course;
+create view course_view as select course_id from course;
+select * from course_view;
